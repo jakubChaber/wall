@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container start">
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+            <div class="brick"></div>
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="row">
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+            <div class="brick"></div>
+
+        </div>
+        <div class="letters"></div>
+        <div class="typedTxt">
+
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const txxt = "It could be another rebel lyric about brics, wall, arms around me and  drugs to calm me. I have seen the lorem ipsum on the wall. Don't think I need lorem ipsum at all. No! Don't think I'll need lorem ipsum at all. All in all it was Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius ad distinctio deleniti aperiam ab illo commodi sed? Vel labore in totam! Similique nesciunt, et minima sint dignissimos officiis totam praesentium.  All in all you were all just Lorem ipsum dolor sit, amet consectetur adipisicing elit... "
+            const words = txxt + "_";
+            let lettersIndex = 0;
+            const bricks = document.querySelectorAll(".brick");
+            let timeOutVal = 50;
+
+            async function onInit() {
+                bricks.forEach((el) => {
+                    el.addEventListener("click", (e) => {
+                        if (document.querySelectorAll(".hidden").length + 1 === 5) {
+                            destroyBricks();
+                        }
+                        e.target.classList.add("hidden");
+                    });
+                });
+
+            }
+            function write(index) {
+                if (index == words.length - 1) { return };
+                setTimeout(() => {
+                    const notePlace = document.querySelector(".letters");
+                    notePlace.innerText = words[index];
+                    document.querySelector('.typedTxt').innerHTML += `<mark>${words[index]}</mark>`;
+                    lettersIndex++;
+                    write(lettersIndex);
+                    document.querySelectorAll('mark').forEach(m => {
+                        m.addEventListener('mousemove', (ev) => {
+                            destroyMarks(ev);
+                        })
+                    })
+
+
+                }, index < words.length / 2 ? timeOutVal : timeOutVal / index);
+            }
+            async function destroyBricks() {
+
+                for (const iterator of document.querySelectorAll('.brick:not(.hidden)')) {
+                    const cleaner = await fadeBrick(iterator);
+                }
+
+                document.querySelectorAll('.brick').forEach(b => b.addEventListener('transitionend', () => {
+                    document
+                        .querySelectorAll(".row")
+                        .forEach((r) => (r.innerHTML = ""));
+                }))
+                document.querySelector('.container').classList.remove('start');
+                document.querySelector('.container').style.scale = 1;
+
+                const writter = await write(lettersIndex);
+
+            }
+            async function destroyMarks(ev = null) {
+                console.log('ev', ev);
+                if (ev !== null) {
+                    const cleaner = await fadeBrick(ev.target);
+                    return;
+                }
+                for (const iterator of document.querySelectorAll('mark')) {
+                    const cleaner = await fadeBrick(iterator);
+                }
+
+            }
+            function fadeBricksSync() {
+                for (const iterator of document.querySelectorAll('mark')) {
+                    iterator.classList.add("hidden");
+                }
+
+            }
+            function fadeBrick(brick) {
+
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        brick.classList.add("hidden");
+                        resolve();
+                    }, 20);
+                });
+            }
+
+            function scrollScale() {
+                document.addEventListener('wheel', (ev) => {
+                    const startEl = document.querySelector('.container');
+                    if (ev.wheelDelta < 0) {
+                        if (startEl.style.perspective) {
+                            startEl.style.perspective = parseFloat(startEl.style.perspective) + 10 + 'px';
+                        } else {
+                            startEl.style.perspective = 100 + 'px';
+                        }
+                    } else {
+                        if (startEl.style.perspective) {
+                            if (parseFloat(startEl.style.perspective) > 100) startEl.style.perspective = parseFloat(startEl.style.perspective) - 10 + 'px';
+                        } else {
+                            startEl.style.perspective = 100 + 'px';
+                        }
+                    }
+
+
+                })
+            }
+
+            scrollScale();
+            onInit();
+            document.querySelector('.typedTxt').addEventListener('dblclick', () => {
+                // document.querySelector('body').style.cursor="none";
+                fadeBricksSync();
+
+            })
+
+
+        })();
+    </script>
+</body>
+</html>
