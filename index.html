@@ -233,20 +233,25 @@
                 });
             }
 
+            const basePerspective = getComputedStyle(document.querySelector('.container')).perspective;
+
             function scrollScale() {
                 document.addEventListener('wheel', (ev) => {
                     const startEl = document.querySelector('.container');
+                    const Epsilon = 0.001;
+
                     if (ev.wheelDelta < 0) {
                         if (startEl.style.perspective) {
-                            startEl.style.perspective = parseFloat(startEl.style.perspective) + 10 + 'px';
+
+                            startEl.style.perspective = parseFloat(startEl.style.perspective) + 50 + 'px';
                         } else {
-                            startEl.style.perspective = 100 + 'px';
+                            startEl.style.perspective = basePerspective;
                         }
                     } else {
                         if (startEl.style.perspective) {
-                            if (parseFloat(startEl.style.perspective) > 100) startEl.style.perspective = parseFloat(startEl.style.perspective) - 10 + 'px';
+                            if ((parseFloat(startEl.style.perspective) - parseFloat(basePerspective) > Epsilon) && (Math.abs(parseFloat(startEl.style.perspective) - parseFloat(basePerspective)) > Epsilon))startEl.style.perspective = parseFloat(startEl.style.perspective) - 50 + 'px';
                         } else {
-                            startEl.style.perspective = 100 + 'px';
+                            startEl.style.perspective = basePerspective;
                         }
                     }
 
